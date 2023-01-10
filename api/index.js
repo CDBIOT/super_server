@@ -5,6 +5,21 @@ const route = express.Router("./rotas_temps");
 const Temps = require('../temps')
 app.use (route)
 
+const cors = require('cors')
+
+app.use(cors());
+
+app.use((req,res,next) => {
+    console.log("Cors habilitado");
+    res.header("Access-Control-Allow-Origin","*");
+    res.header("Access-Control-Allow-Header",'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+    if (req.method === 'OPTIONS'){
+        res.header('Access-Control-Allow-Methods','PUT, POST, PATCH, DELETE, GET');
+        res.status(200).send({})
+    }
+    
+   next()
+   })
 //Read
 
 app.get('/', (req, res) =>{
