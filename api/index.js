@@ -39,6 +39,24 @@ route.get('/temps', async (req, res) =>{
     }  
 })
 
+routers.get('/mqtt',(req, res) =>{
+    try{ 
+        date = new Date() 
+        var vm = {
+            temp: temp,
+            local: local,
+            dia: date.getDate(),   
+            mes: date.getMonth() + 1,
+            ano: date.getFullYear()
+        }
+        console.log(vm);
+        //res.send(vm);
+        res.status(200).json({vm})
+     }catch(error){
+         res.status(500).json(error)
+     }  
+    })
+    
 const PORT = process.env.PORT || 4000;
 
     app.listen(PORT,()=>{
