@@ -11,10 +11,10 @@ app.use(cors());
 
 app.use((req,res,next) => {
     console.log("Cors habilitado");
-    res.header("Access-Control-Allow-Origin","*");
-    res.header("Access-Control-Allow-Header",'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+    res.setHeader("Access-Control-Allow-Origin","*");
+    res.setHeader("Access-Control-Allow-Header",'Origin, X-Requested-With, Content-Type, Accept, Authorization');
     if (req.method === 'OPTIONS'){
-        res.header('Access-Control-Allow-Methods','PUT, POST, PATCH, DELETE, GET');
+        res.setHeader('Access-Control-Allow-Methods','PUT, POST, PATCH, DELETE, GET');
         res.status(200).send({})
     }
     
@@ -39,7 +39,7 @@ route.get('/temps', async (req, res) =>{
     }  
 })
 
-routers.get('/mqtt',(req, res) =>{
+route.get('/mqtt',(req, res) =>{
     try{ 
         date = new Date() 
         var vm = {
