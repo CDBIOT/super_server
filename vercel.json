@@ -13,6 +13,11 @@
         "dest": "api/index.js"
         }       
     ] ,
+     "rewrites": [
+          {
+            "source": "*",
+            "destination": "*"
+          }],
     "headers": [
       {
         "source": "/api/(.*)",
