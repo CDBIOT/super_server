@@ -10,13 +10,14 @@ const cors = require('cors')
 app.use(cors());
 
 app.use((req,res,next) => {
-    console.log("Cors habilitado");
+    
     res.setHeader("Access-Control-Allow-Origin","*");
     res.setHeader("Access-Control-Allow-Header",'Origin, X-Requested-With, Content-Type, Accept, Authorization');
     if (req.method === 'OPTIONS'){
         res.setHeader('Access-Control-Allow-Methods','PUT, POST, PATCH, DELETE, GET');
         res.status(200).send({})
     }
+    console.log("Cors habilitado");
     
    next()
    })
