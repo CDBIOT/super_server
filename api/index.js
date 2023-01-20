@@ -1,8 +1,9 @@
 const express = require('express');
 const app = express();
 const route = express.Router("./rotas_temps");
-//require('dotenv').config()
+require('dotenv').config()
 const Temps = require('../temps')
+const db_atlas = require('../db_atlas')
 app.use (route)
 
 const cors = require('cors')
