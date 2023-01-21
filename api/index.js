@@ -8,7 +8,7 @@ app.use (route)
 
 const cors = require('cors')
 
-app.use(cors());
+app.use(cors({origin: 'https://iot-seven.vercel.app'}));
 
 app.use((req,res,next) => {
     
