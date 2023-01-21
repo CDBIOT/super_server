@@ -1,10 +1,45 @@
 const express = require('express');
 const app = express();
-const route = express.Router("../rotas_temps");
+const mongoose = require('mongoose')
+const route = express.Router("./rotas_temps");
 require('dotenv').config()
-const Temps = require('../temps')
+//const Temps = require('../temps')
 app.use (route)
 
+//Read
+//if(process.env.NODE_ENV == "production"){
+
+   // module.exports = 
+   //{
+    //MONGODB_URI: process.env.MONGODB_URI
+    
+    const MONGODB_URI= 'mongodb+srv://'+process.env.DB_USER+':'+process.env.DB_PASS+'@cluster0.mvho6.mongodb.net/'
+    +process.env.DB_NAME+'?retryWrites=true&w=majority'
+   // },
+   //{
+    useNewUrlParser: true,
+    //useUnifiedTopology: true
+    //}
+    //}
+
+mongoose.connect(MONGODB_URI).then(db => 
+        console.log("MongodB conectado com sucesso!", db.connection.host))
+        
+        .catch((err) => {
+            console.log("Houve um erro ao se conectar ao mongodB: " + err)
+        })
+        
+        //Model Temperaturas Dia Mes Ano
+        
+        const Temps = mongoose.model('Temps',{
+            //_id: Number,
+            local: String  ,
+            temperatura: Number,
+            dia: Number,
+            mes: Number,
+            ano: Number
+        })
+        
 const cors = require('cors')
 
 app.use(cors({origin: 'https://iot-seven.vercel.app/Graphics'}));
@@ -16,21 +51,6 @@ app.use((req, res, next) => {
     console.log('Cors habilitado')
     next();
 });
-//Read
-if(process.env.NODE_ENV == "production"){
-
-    module.exports = {
-    //MONGODB_URI: process.env.MONGODB_URI
-    
-    MONGODB_URI: 'mongodb+srv://'+process.env.DB_USER+':'+process.env.DB_PASS+'@cluster0.mvho6.mongodb.net/'
-    +process.env.DB_NAME+'?retryWrites=true&w=majority'
-    },
-    {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-    }
-    }
-
 
 app.get('/', (req, res) =>{
         res.json({
