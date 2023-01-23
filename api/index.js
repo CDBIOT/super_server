@@ -45,7 +45,7 @@ const cors = require('cors')
 app.use(cors({origin: 'https://iot-seven.vercel.app/Graphics'}));
 
 app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", 'https://iot-seven.vercel.app/Graphics');
+    res.setHeader("Access-Control-Allow-Origin", 'https://iot-seven.vercel.app');
     res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
     res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE, OPTIONS");
     console.log('Cors habilitado')
@@ -63,6 +63,9 @@ app.get('/', (req, res) =>{
 app.get('/temps', async (req, res) =>{
     try{ 
     res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader("Access-Control-Allow-Origin", 'https://iot-seven.vercel.app');
+    res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE, OPTIONS");
        const temps = await Temps.find()
         res.status(200).json({temps})
     }catch(error){
