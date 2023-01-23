@@ -60,7 +60,7 @@ app.get('/', (req, res) =>{
 })
 
 //Read
-route.get('/temps', async (req, res) =>{
+app.get('/temps', async (req, res) =>{
     try{
        const temps = await Temps.find()
         res.status(200).json({temps})
@@ -69,7 +69,7 @@ route.get('/temps', async (req, res) =>{
     }  
 })
 
-route.get('/mqtt',(req, res) =>{
+app.get('/mqtt',(req, res) =>{
     try{ 
         date = new Date() 
         var vm = {
