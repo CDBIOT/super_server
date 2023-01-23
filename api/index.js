@@ -42,9 +42,9 @@ mongoose.connect(MONGODB_URI).then(db =>
         
 const cors = require('cors')
 
-app.use(cors({origin: 'https://iot-seven.vercel.app/Graphics'}));
+route.use(cors({origin: 'https://iot-seven.vercel.app/Graphics'}));
 
-app.use((req, res, next) => {
+route.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", 'https://iot-seven.vercel.app');
     res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
     res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE, OPTIONS");
@@ -52,7 +52,7 @@ app.use((req, res, next) => {
     next();
 });
 
-app.get('/', (req, res) =>{
+route.get('/', (req, res) =>{
         res.json({
             sucess: true,
             message: "Sucesso na conexão"
@@ -60,7 +60,7 @@ app.get('/', (req, res) =>{
 })
 
 //Read
-app.get('/temps', async (req, res) =>{
+route.get('/temps', async (req, res) =>{
     try{ 
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader("Access-Control-Allow-Origin", 'https://iot-seven.vercel.app');
