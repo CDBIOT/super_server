@@ -6,8 +6,7 @@ const mongoose = require('mongoose')
 //+process.env.DB_NAME+'?retryWrites=true&w=majority'
 //const MONGODB_URI = db_atlas.MONGODB_URI
 const MONGODB_URI = process.env.MONGODB_URI
-//MONGODB_URI= "mongodb+srv://cdb:abcdeF12345@cluster0.mvho6.mongodb.net/test"
-//mongodb+srv://cdb:<faculdade18>@cluster0.mvho6.mongodb.net/?retryWrites=true&w=majority
+
 //try{
 mongoose.connect(MONGODB_URI).then(db => 
 console.log("MongodB conectado com sucesso!", db.connection.host))
