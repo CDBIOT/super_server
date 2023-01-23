@@ -61,7 +61,8 @@ app.get('/', (req, res) =>{
 
 //Read
 app.get('/temps', async (req, res) =>{
-    try{
+    try{ 
+    res.setHeader('Access-Control-Allow-Origin', '*');
        const temps = await Temps.find()
         res.status(200).json({temps})
     }catch(error){
