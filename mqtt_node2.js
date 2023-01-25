@@ -1,5 +1,4 @@
 const mqtt = require('mqtt');
-const routers = require('./rotas_temps');
 
 const host = 'broker.mqtt-dashboard.com'
 const port = '1883'

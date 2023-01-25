@@ -1,18 +1,16 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose')
-const route = express.Router("./rotas_temps");
+const route = express.Router("./rotas_temps, ./mqtt");
+
 require('dotenv').config()
 //const Temps = require('../temps')
 app.use (route)
 
 //Read
 //if(process.env.NODE_ENV == "production"){
-
    // module.exports = 
    //{
-    //MONGODB_URI: process.env.MONGODB_URI
-    
     const MONGODB_URI= 'mongodb+srv://'+process.env.DB_USER+':'+process.env.DB_PASS+'@cluster0.mvho6.mongodb.net/'
     +process.env.DB_NAME+'?retryWrites=true&w=majority'
    // },
