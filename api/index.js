@@ -70,6 +70,7 @@ route.get('/temps', async (req, res) =>{
 route.get('/mqtt',(req, res) =>{
     try{ 
         date = new Date() 
+        
         var vm = {
             temp: temp,
             local: local,
