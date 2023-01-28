@@ -67,7 +67,7 @@ route.get('/temps', async (req, res) =>{
     }  
 })
 
-app.get('/mqtt',(req, res) =>{
+route.get('/mqtt',(req, res) =>{
     try{ 
         date = new Date() 
         var vm = {
@@ -84,6 +84,13 @@ app.get('/mqtt',(req, res) =>{
          res.status(500).json(error)
      }  
     })
+    
+route.use('/mqtt_node2.js', express.static("/"))
+
+
+route.get("/mqtt_node2",function(req,res){
+   res.sendFile(__dirname + "/mqtt_node2.js");
+});
     
 const PORT = process.env.PORT || 4000;
 
