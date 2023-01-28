@@ -70,7 +70,7 @@ route.get('/temps', async (req, res) =>{
 route.get('/mqtt',(req, res) =>{
     try{ 
         date = new Date() 
-        
+
         var vm = {
             temp: temp,
             local: local,
@@ -86,12 +86,13 @@ route.get('/mqtt',(req, res) =>{
      }  
     })
     
-route.use('/mqtt_node2.js', express.static("/"))
-
+// route.use('/', express.static(__dirname + '/'))
+// route.use('/mqtt_node2.js', express.static("/"))
 
 route.get("/mqtt_node2",function(req,res){
    res.sendFile(__dirname + "/mqtt_node2.js");
 });
+
     
 const PORT = process.env.PORT || 4000;
 
