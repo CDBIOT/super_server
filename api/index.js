@@ -72,8 +72,8 @@ route.get('/mqtt',(req, res) =>{
         date = new Date() 
 
         var vm = {
-            temp: temp,
-            local: local,
+            //temp: temp,
+           // local: local,
             dia: date.getDate(),   
             mes: date.getMonth() + 1,
             ano: date.getFullYear()
@@ -85,6 +85,25 @@ route.get('/mqtt',(req, res) =>{
          res.status(500).json(error)
      }  
     })
+    
+ //Create temps
+ route.post('/temps', async (req, res) =>{
+    const {local, temperatura, dia, mes, ano } = req.body
+       // const temps = req.params
+    const temps = {local,temperatura, dia, mes, ano}
+    const create_temp = new Temps(req.body);
+    //temps.save()
+        try{
+            await Temps.create(temps)
+            //temps.save()
+            console.log(temps)
+            res.status(201).json({message: "Temperatura inserida"})
+            }catch(error){
+            res.status(500).json({error: error})
+        }  
+    })
+    
+    
     
 // route.use('/', express.static(__dirname + '/'))
 route.use('/mqtt_node2.js', express.static("/"))
