@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose')
 const route = express.Router("./rotas_temps, ./mqtt");
+const Person = require('../user')
 
 require('dotenv').config()
 //const Temps = require('../temps')
@@ -57,6 +58,17 @@ route.get('/', (req, res) =>{
         })
 })
 
+//Read 
+route.get('/user',checkToken, async (req, res) =>{
+
+    try{
+        const people = await Person.find()
+        return res.status(422).json({people})
+    }catch(error){
+        res.status(500).json({error: error})
+    }  
+})
+
 //Read
 route.get('/products', async (req, res) =>{
     try{
@@ -68,6 +80,20 @@ route.get('/products', async (req, res) =>{
 })
 
     
+ //Create
+route.post('/user', async (req, res) =>{
+    const {nome, sobrenome, idade } = req.body
+    const person = {
+        nome,sobrenome,idade
+                    }
+    try{
+        await Person.create(person)
+        res.status(201).json({message: "Pessoa inserida com sucesso"})
+    }catch(error){
+        res.status(500).json({error: error})
+    }  
+})
+
  //Create temps
  route.post('/products', async (req, res) =>{
     const {local, temperatura, dia, mes, ano } = req.body
@@ -86,7 +112,7 @@ route.get('/products', async (req, res) =>{
     })
     
     
-route.post('/produtos',async(req, res) =>{
+route.post('/products',async(req, res) =>{
     const  produto = {
     //Utiliza as inf do form html
       nome: req.body.nome,
@@ -98,13 +124,6 @@ route.post('/produtos',async(req, res) =>{
     })
   });
     
-// route.use('/', express.static(__dirname + '/'))
-route.use('/mqtt_node2.js', express.static("/"))
-
-route.get("/mqtt_node2",function(req,res){
-   res.sendFile(__dirname + "/mqtt_node2.js");
-});
-
     
 const PORT = process.env.PORT || 4000;
 
