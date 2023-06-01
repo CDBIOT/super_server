@@ -58,7 +58,7 @@ route.get('/', (req, res) =>{
 })
 
 //Read
-route.get('/temps', async (req, res) =>{
+route.get('/products', async (req, res) =>{
     try{
        const temps = await Temps.find()
         res.status(200).json({temps})
@@ -67,27 +67,9 @@ route.get('/temps', async (req, res) =>{
     }  
 })
 
-route.get('/mqtt',(req, res) =>{
-    try{ 
-        date = new Date() 
-
-        var vm = {
-            //temp: temp,
-           // local: local,
-            dia: date.getDate(),   
-            mes: date.getMonth() + 1,
-            ano: date.getFullYear()
-        }
-        console.log(vm);
-        //res.send(vm);
-        res.status(200).json({vm})
-     }catch(error){
-         res.status(500).json(error)
-     }  
-    })
     
  //Create temps
- route.post('/temps', async (req, res) =>{
+ route.post('/products', async (req, res) =>{
     const {local, temperatura, dia, mes, ano } = req.body
        // const temps = req.params
     const temps = {local,temperatura, dia, mes, ano}
@@ -104,6 +86,17 @@ route.get('/mqtt',(req, res) =>{
     })
     
     
+route.post('/produtos',async(req, res) =>{
+    const  produto = {
+    //Utiliza as inf do form html
+      nome: req.body.nome,
+      preco: req.body.preco
+    }
+    res.status(201).send({
+    mensagem: 'inserido',
+    produtoCriado: produto
+    })
+  });
     
 // route.use('/', express.static(__dirname + '/'))
 route.use('/mqtt_node2.js', express.static("/"))
