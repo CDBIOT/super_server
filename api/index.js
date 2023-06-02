@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose')
-const route = express.Router("./rotas_temps, ./mqtt");
+const route = express.Router("./rotas_temps,./rotas_user, ./mqtt");
 const Person = require('../user')
 
 require('dotenv').config()
