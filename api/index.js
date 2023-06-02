@@ -3,9 +3,9 @@ const app = express();
 const mongoose = require('mongoose')
 const route = express.Router("./rotas_temps,./rotas_user, ./mqtt");
 const Person = require('../user')
+const Products = require('../products')
 
 require('dotenv').config()
-//const Temps = require('../temps')
 app.use (route)
 
 //Read
@@ -28,16 +28,6 @@ mongoose.connect(MONGODB_URI).then(db =>
             console.log("Houve um erro ao se conectar ao mongodB: " + err)
         })
         
-        //Model Temperaturas Dia Mes Ano
-        
-        const Temps = mongoose.model('Temps',{
-            //_id: Number,
-            local: String  ,
-            temperatura: Number,
-            dia: Number,
-            mes: Number,
-            ano: Number
-        })
         
 const cors = require('cors')
 
@@ -72,8 +62,8 @@ route.get('/user',checkToken, async (req, res) =>{
 //Read
 route.get('/products', async (req, res) =>{
     try{
-       const temps = await Temps.find()
-        res.status(200).json({temps})
+       const products = await Products.find()
+        res.status(200).json({products})
     }catch(error){
         res.status(500).json({ message: "No Sucess!"})
     }  
@@ -94,18 +84,18 @@ route.post('/user', async (req, res) =>{
     }  
 })
 
- //Create temps
+ //Create product
  route.post('/products', async (req, res) =>{
-    const {local, temperatura, dia, mes, ano } = req.body
-       // const temps = req.params
-    const temps = {local,temperatura, dia, mes, ano}
-    const create_temp = new Temps(req.body);
+    const {product, marca, price, qtd } = req.body
+       // const products = req.params
+    const products = {product, marca, price, qtd}
+    const create_product = new Products(req.body);
     //temps.save()
         try{
-            await Temps.create(temps)
+            await Products.create(Products)
             //temps.save()
-            console.log(temps)
-            res.status(201).json({message: "Temperatura inserida"})
+            console.log(products)
+            res.status(201).json({message: "Product inserted"})
             }catch(error){
             res.status(500).json({error: error})
         }  

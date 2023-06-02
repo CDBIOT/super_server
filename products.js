@@ -17,16 +17,15 @@ console.log("MongodB conectado com sucesso!", db.connection.host))
 
 //Model Temperaturas Dia Mes Ano
 
-const Temps = mongoose.model('Temps',{
+const Products = mongoose.model('Products',{
     //_id: Number,
-    local: String  ,
-    temperatura: Number,
-    dia: Number,
-    mes: Number,
-    ano: Number
+    product: String  ,
+    marca: String,
+    price: Number,
+    qtd: Number
 })
 
-module.exports = Temps
+module.exports = Products
 
 
 
