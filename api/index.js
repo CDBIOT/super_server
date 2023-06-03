@@ -1,9 +1,10 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose')
-const route = express.Router("./rotas_temps,./rotas_user, ./mqtt");
+const route = express.Router("./rotas_products,./rotas_user, ./mqtt");
 const Person = require('../user')
 const Products = require('../products')
+const Sales = require("../sales")
 
 require('dotenv').config()
 app.use (route)
@@ -22,11 +23,10 @@ app.use (route)
     //}
 
 mongoose.connect(MONGODB_URI).then(db => 
-        console.log("MongodB conectado com sucesso!", db.connection.host))
-        
-        .catch((err) => {
-            console.log("Houve um erro ao se conectar ao mongodB: " + err)
-        })
+    console.log("MongodB conectado com sucesso!", db.connection.host))
+.catch((err) => {
+    console.log("Houve um erro ao se conectar ao mongodB: " + err)
+})
         
         
 const cors = require('cors')
@@ -34,7 +34,7 @@ const cors = require('cors')
 route.use(cors());
 
 route.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", 'https://iot-seven.vercel.app');
+    res.setHeader("Access-Control-Allow-Origin", 'https://super-server.eta.vercel.app');
     res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, X-Content-Type-Options:nosniff, Accept,Authorization");
     res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE, OPTIONS");
     console.log('Cors habilitado')
@@ -44,7 +44,7 @@ route.use((req, res, next) => {
 route.get('/', (req, res) =>{
         res.json({
             sucess: true,
-            message: "Sucesso na conexão"
+            message: "Backend Super_server ok!"
         })
 })
 
@@ -53,7 +53,7 @@ route.get('/user',checkToken, async (req, res) =>{
 
     try{
         const people = await Person.find()
-        return res.status(422).json({people})
+        return res.status(200).json({people})
     }catch(error){
         res.status(500).json({error: error})
     }  
@@ -65,10 +65,19 @@ route.get('/products', async (req, res) =>{
        const products = await Products.find()
         res.status(200).json({products})
     }catch(error){
-        res.status(500).json({ message: "No Sucess!"})
+        res.status(500).json({error: error})
     }  
 })
 
+//Read
+route.get('/sales', async (req, res) =>{
+    try{
+       const sales = await Sales.find()
+        res.status(200).json({sales})
+    }catch(error){
+        res.status(500).json({error: error})
+    }  
+})
     
  //Create
 route.post('/user', async (req, res) =>{
@@ -109,7 +118,7 @@ route.post('/products',async(req, res) =>{
       preco: req.body.preco
     }
     res.status(201).send({
-    mensagem: 'inserido',
+    mensagem: 'Inserted',
     produtoCriado: produto
     })
   });
@@ -118,5 +127,5 @@ route.post('/products',async(req, res) =>{
 const PORT = process.env.PORT || 4000;
 
     app.listen(PORT,()=>{
-        console.log("Servidor Rodando" + `${PORT}`);
+        console.log("Server Running => Port: " + `${PORT}`);
         })
