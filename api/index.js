@@ -1,4 +1,4 @@
-const express = require('express');
+const express = require ('express');
 const app = express();
 const mongoose = require('mongoose')
 const route = express.Router("./rotas_products,./rotas_user, ./mqtt");
@@ -21,13 +21,18 @@ app.use (route)
   //  },
  //   }
 
+ //const bd_status = true;
+
 mongoose.connect(MONGODB_URI,{
     useNewUrlParser: true,
     useUnifiedTopology: true
-    }).then(db => 
-    console.log("MongodB conectado com sucesso!", db.connection.host))
+    }).then(()=> 
+   // bd_status = true,
+    console.log("MongodB conectado com sucesso!")
+    )
 .catch((err) => {
     console.log("Houve um erro ao se conectar ao mongodB: " + err)
+   // bd_status = false
 })
      
    
@@ -36,7 +41,7 @@ const cors = require('cors')
 route.use(cors());
 
 route.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", 'https://super-server.eta.vercel.app');
+    res.setHeader("Access-Control-Allow-Origin", 'https://supervercel.vercel.app');
     res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, X-Content-Type-Options:nosniff, Accept,Authorization");
     res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE, OPTIONS");
     console.log('Cors habilitado')
@@ -45,8 +50,10 @@ route.use((req, res, next) => {
 
 route.get('/', (req, res) =>{
         res.json({
-            sucess: true,
+            status: true,
+           // bd_status: {bd_status},
             message: "Backend Super_server ok!"
+
         })
 })
 
@@ -83,9 +90,9 @@ route.get('/sales', async (req, res) =>{
     
  //Create
 route.post('/user', async (req, res) =>{
-    const {nome, sobrenome, idade } = req.body
+    const {user_id, nome, email, senha } = req.body
     const person = {
-        nome,sobrenome,idade
+        user_id, nome, email, senha
                     }
     try{
         await Person.create(person)
@@ -124,7 +131,12 @@ route.post('/products',async(req, res) =>{
     produtoCriado: produto
     })
   });
+  
+app.use('/', express.static(__dirname + '/'))
     
+app.get("/index.html",function(req,res){
+    res.sendFile(__dirname + "/index.html");
+});
     
 const PORT = process.env.PORT || 4000;
 
