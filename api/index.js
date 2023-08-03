@@ -21,18 +21,18 @@ app.use (route)
   //  },
  //   }
 
- //const bd_status = true;
+ const bd_status = true;
 
 mongoose.connect(MONGODB_URI,{
     useNewUrlParser: true,
     useUnifiedTopology: true
     }).then(()=> 
-   // bd_status = true,
+    bd_status = true,
     console.log("MongodB conectado com sucesso!")
     )
 .catch((err) => {
     console.log("Houve um erro ao se conectar ao mongodB: " + err)
-   // bd_status = false
+    bd_status = false
 })
      
    
