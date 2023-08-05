@@ -40,7 +40,13 @@ mongoose.connect(MONGODB_URI).then(db =>
         
 const cors = require('cors')
 
-route.use(cors());
+route.use(cors({
+    origin:'https://iot-seven.vercel.app',
+    methods: "GET, POST, PUT, PATCH, DELETE, OPTIONS"
+}
+
+
+));
 
 route.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", 'https://iot-seven.vercel.app');
