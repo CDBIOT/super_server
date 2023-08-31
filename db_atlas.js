@@ -1,16 +1,28 @@
 const mongoose = require('mongoose')
+require('dotenv').config()
 
-//Configuração do mongoose
-//mongoose.Promise = global.Promise;
-MONGODB_URI =  'mongodb+srv://'+process.env.MONGODB_URI+':'+process.env.DB_PASS+'@cluster0.mvho6.mongodb.net/'
-//+process.env.DB_NAME+'?retryWrites=true&w=majority'
-//const MONGODB_URI = db_atlas.MONGODB_URI
-//const MONGODB_URI = process.env.MONGODB_URI
+// if(process.env.NODE_ENV == "production"){
+//     module.exports = 
+//    {
+const MONGODB_URI = 'mongodb+srv://'+process.env.DB_USER+':'+process.env.DB_PASS+'@cluster0.mvho6.mongodb.net/'
+    +process.env.DB_NAME+'?retryWrites=true&w=majority'
+    //},
+  // {
+   // useNewUrlParser: true,
+    //useUnifiedTopology: true
+  //  },
+ //   }
 
-//try{
-mongoose.connect(MONGODB_URI).then(db => 
-console.log("MongodB conectado com sucesso!", db.connection.host))
 
+mongoose.connect(MONGODB_URI,{
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+    }).then(()=> 
+   
+    console.log("MongodB " +process.env.DB_NAME +" conectado com sucesso!")
+    )
 .catch((err) => {
-    console.log("Houve um erro ao se conectar ao mongodB: " + err)
+    console.log("Houve um erro ao se conectar ao mongodB: " +process.env.DB_NAME + err)
+   
 })
+     

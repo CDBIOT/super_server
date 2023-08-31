@@ -34,7 +34,7 @@ mongoose.connect(MONGODB_URI).then(db =>
         console.log("MongodB conectado com sucesso!", db.connection.host))
         
         .catch((err) => {
-            console.log("Houve um erro ao se conectar ao mongodB: " + err)
+            console.log("Houve um erro ao se conectar ao mongodB indexapi: " + err)
         })
         
 //Model Temperaturas Dia Mes Ano

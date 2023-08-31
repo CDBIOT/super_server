@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-//Model Temperaturas Dia Mes Ano
+//Model Sales
 
 const Sales = mongoose.model('Sales',{
     sales_id: Number,

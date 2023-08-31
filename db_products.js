@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-//Model Temperaturas Dia Mes Ano
+//Model Products
 
 const Products = mongoose.model('Products',{
     //_id: Number,

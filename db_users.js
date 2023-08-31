@@ -9,5 +9,4 @@ const Person = mongoose.model('Person',{
     senha: String,
 })
 
-
 module.exports = Person

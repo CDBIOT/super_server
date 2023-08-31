@@ -1,50 +1,17 @@
 const express = require ('express');
 const app = express();
 const mongoose = require('mongoose')
-const route = express.Router("./rotas_products,./rotas_user, ./mqtt");
+const route = express.Router("../rotas_products,../rotas_user");
 const Person = require('../db_users')
 const Products = require('../db_products')
 const Sales = require("../db_sales")
+const db = require('../db_atlas')
 
 require('dotenv').config()
 app.use (route)
-
-// if(process.env.NODE_ENV == "production"){
-//     module.exports = 
-//    {
-    const MONGODB_URI = 'mongodb+srv://'+process.env.DB_USER+':'+process.env.DB_PASS+'@cluster0.mvho6.mongodb.net/'
-    +process.env.DB_NAME+'?retryWrites=true&w=majority'
-    //},
-  // {
-   // useNewUrlParser: true,
-    //useUnifiedTopology: true
-  //  },
- //   }
-
- const bd_status = true;
-
-mongoose.connect(MONGODB_URI,{
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-    }).then(()=> 
-    bd_status = true,
-    console.log("MongodB conectado com sucesso!")
-    )
-.catch((err) => {
-    console.log("Houve um erro ao se conectar ao mongodB: " + err)
-    bd_status = false
-})
-     
-   
 const cors = require('cors')
 
-route.use(cors({
-    origin:'https://iot-seven.vercel.app',
-    methods: "GET, POST, PUT, PATCH, DELETE, OPTIONS"
-}
-
-
-));
+route.use(cors());
 
 route.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", 'https://supervercel.vercel.app');
