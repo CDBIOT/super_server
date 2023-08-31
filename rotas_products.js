@@ -2,31 +2,33 @@ const { response } = require('express');
 const express = require('express');
 const routers = express.Router();
 
-const Temps = require('./temps')
-const Person = require('./user')
 //var fs = require('fs');
 //app.use(mqtt);
 const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
+const Products = require('./db_products');
 
 
- routers.get('/mqtt',(req, res) =>{
-    try{ 
-        date = new Date() 
-        var vm = {
-            temp: temp,
-            local: local,
-            dia: date.getDate(),   
-            mes: date.getMonth() + 1,
-            ano: date.getFullYear()
-        }
-        console.log(vm);
-        //res.send(vm);
-        res.status(200).json({vm})
+routers.get('/products',async(req, res) =>{
+    try{
+        const temps = await Products.find()
+         res.status(200).json({temps})
      }catch(error){
-         res.status(500).json(error)
+         res.status(500).json({error: error})
      }  
-    })
+   
+  });
+
+routers.post('/products',async(req, res) =>{
+     const  produto = {
+        nome: req.body.nome,
+        preco: req.body.preco
+     }
+     res.status(201).send({
+     mensagem: 'inserido',
+     produtoCriado: produto
+     })
+   });
     
  //Create temps
  routers.post('/temps', async (req, res) =>{
