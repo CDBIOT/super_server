@@ -6,7 +6,7 @@ routers.get('/vendas',async(req, res) =>{
     
     try{
         const temps = await Sales.find()
-         res.status(200).json({temps})
+         res.status(200).json({sales})
      }catch(error){
          res.status(500).json({error: error})
      }  
