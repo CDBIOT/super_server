@@ -24,3 +24,4 @@ routers.get('/vendas',async(req, res) =>{
     })
   });
     
+module.exports =  routers
