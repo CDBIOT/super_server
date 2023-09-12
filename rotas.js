@@ -1,8 +1,8 @@
 const express = require('express');
-const routers = express.Router();
+const rotas = express.Router();
 
 
-routers.get('/vendas',async(req, res) =>{
+rotas.get('/vendas',async(req, res) =>{
     
     try{
         const temps = await Sales.find()
@@ -13,7 +13,7 @@ routers.get('/vendas',async(req, res) =>{
 
   });
 
- routers.post('/vendas',async(req, res) =>{
+ rotas.post('/vendas',async(req, res) =>{
     const  produto = {
        nome: req.body.nome,
        preco: req.body.preco
@@ -24,4 +24,4 @@ routers.get('/vendas',async(req, res) =>{
     })
   });
     
-module.exports =  routers
+module.exports =  rotas

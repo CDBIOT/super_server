@@ -1,6 +1,6 @@
 const express = require ('express');
 const app = express();
-const route = express.Router("../rotas_sales");
+const route = express.Router("../rotas");
 const Person = require('../db_users')
 const Products = require('../db_products')
 const Sales = require("../db_sales")
