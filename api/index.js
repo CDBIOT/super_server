@@ -5,6 +5,7 @@ const Person = require('../db_users')
 const Products = require('../db_products')
 const Sales = require("../db_sales")
 const db = require('../db_atlas')
+const db_pg = require('../db_pg')
 const cors = require('cors')
 
 app.use(cors());
