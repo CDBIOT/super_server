@@ -29,4 +29,4 @@ async function connect() {
   return pool.connect();
  }
 
-connect();
+//connect();
