@@ -5,8 +5,9 @@ const Person = require('../db_users')
 const Products = require('../db_products')
 const Sales = require("../db_sales")
 const db = require('../db_atlas')
-const db_pg = require('../db_pg')
+const sql = require('../db_pg')
 const cors = require('cors')
+//import {sql} from '../db_pg'
 
 app.use(cors());
 
@@ -20,13 +21,34 @@ app.use((req,res,next) => {
     }
 next()
    })
-
+ async function start() {
+    const db = require("../db_pg");
+    console.log('Começou!');
+ 
+    console.log('SELECT * FROM Products');
+    const clientes = await db.selectProducts();
+    console.log(clientes);
+}
+ 
+start();
 route.get('/', (req, res) =>{
         res.json({
             status: true,
             message: "Backend Super_server ok!"
 
         })
+})
+
+//Read from postgre
+route.get('/postgre', async (req, res) =>{
+
+    try{
+       // const client = await connect();
+        const products = await client.query('SELECT * FROM Products')
+        return res.status(200).json({products})
+    }catch(error){
+        res.status(500).json({error: error})
+    }  
 })
 
 //Read 
