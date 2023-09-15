@@ -1,0 +1,80 @@
+POST http://localhost:8081/user
+content-type: application/json
+
+{
+"token": "aeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyZWQ4ZmJlY2Y0ODI5M2IwMTc1MTRkZCIsImlhdCI6MTY2MDY4ODM1M30.U45e1OajdtcrfAVrkfdcp5a2SN4yHr_OCoFU1LM-BqY"
+
+}
+
+###
+POST http://localhost:8081/cadastrar
+
+###
+GET  http://localhost:8081/login
+content-type: application/json
+headers
+{
+//"_id": "2",
+"nome": "cris",
+"senha0": "123"
+}
+
+###
+DELETE http://localhost:8081/user/
+
+
+####
+POST https://polar-beyond-82520.herokuapp.com/temps
+content-type: application/json
+
+{
+//"_id": "2",
+"local": "sala",
+"temperatura": "14",
+"dia":"18",
+"mes":"06",
+"ano":"2022"
+}
+
+###
+GET http://localhost:8081/user/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyZWQ4ZmJlY2Y0ODI5M2IwMTc1MTRkZCIsImlhdCI6MTY2MDUyNDEwMX0.F5dFIeqRXdpqTyXCJbE-wJyZCW7pv2SZoV5ETC2I2xA
+
+###
+GET https://super-server-eta.vercel.app/postgre
+
+
+###
+GET http://localhost:8081/temps/mqtt
+
+
+
+###
+PATCH   http://localhost:8081/user/1
+content-type: application/json
+
+{
+"nome": "lulu",
+"sobrenome": "kawahara",
+"idade": 15
+}
+
+###
+PATCH   https://polar-beyond-82520.herokuapp.com/temps
+content-type: application/json
+
+{
+"local": "sala",
+"temperatura": "18",
+"dia": "22",
+"mes": "06",
+"ano": "2022"
+}
+
+
+###
+DELETE  https://polar-beyond-82520.herokuapp.com/temps/62ba1af4dd10d6f7d1d5bce0
+
+
+
+
+

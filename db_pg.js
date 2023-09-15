@@ -37,11 +37,3 @@ async function connect() {
     
 }
 connect();
-
-async function selectProducts() {
-    const client = await connect();
-    const res = await client.query('SELECT * FROM Products');
-    return res.rows;
-}
- 
-module.exports = { selectProducts }
