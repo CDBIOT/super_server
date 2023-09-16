@@ -36,9 +36,12 @@ route.get('/', (req, res) =>{
 route.get('/postgre', async (req, res) =>{
 
     try{
-       // const client = await connect();
-        const products = await sql.query('SELECT * FROM Products',(error,results))
-        return res.status(200).json(results.rows)
+        //const client = await connect();
+      // 
+ const res = await client.query('SELECT NOW()');
+        console.log(res.rows[0]);
+const products = await sql.query('SELECT * FROM Products',(error,results))
+        return res.status(200).json(products)
     }catch(error){
         res.status(500).json({error: error})
     }  
