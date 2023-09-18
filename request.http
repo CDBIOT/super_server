@@ -54,7 +54,7 @@ GET http://localhost:8081/user/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYy
 
 
 ###
-GET http://localhost:8081/temps/mqtt
+GET https://repo1-beta.vercel.app/temps
 
 
 

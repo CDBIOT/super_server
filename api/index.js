@@ -70,25 +70,10 @@ route.get('/sales', async (req, res) =>{
     
 
 route.use('/', express.static(__dirname + '/'))
-route.use('/css', express.static("/css"))
-route.use('/imagens', express.static("/imagens"))
-route.use('/user.js', express.static("/"))
-
- 
-route.use('/', express.static(__dirname + '/'))
     
 route.get("/index.html",function(req,res){
     res.sendFile(__dirname + "/index.html");
 });
-
- route.get("/cad_user",function(req,res){
-    res.sendFile(__dirname + "/cad_user.html");
-});
-
- route.get("/user.js",function(req,res){
-     res.sendFile(__dirname + "/user.js");
- });
-
  
     
 const PORT = process.env.PORT || 4000;

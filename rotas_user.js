@@ -1,9 +1,6 @@
-const { response } = require('express');
 const express = require('express');
-const app = express();
-const Person = require('./user')
+const Person = require('./db_users')
 var fs = require('fs');
-//const Temps = require('./temps')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
@@ -59,7 +56,7 @@ const login = (async (req, res) =>{
 //Update
 const putUser = (async (req, res) =>{
     const id = req.params.id
-    const {nome,sobrenome,idade} = req.body
+    const {nome,email,senha} = req.body
     const person = {nome,email,senha,}
     try{
      const updatePerson = await Person.updateOne({_id: id},person);
@@ -238,6 +235,7 @@ module.exports =
     postCrip,
     CadUser,
     postUser,
+    putUser,
     deleteUser,
     login,
     loginCrip
