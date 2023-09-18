@@ -1,7 +1,8 @@
 const express = require ('express');
 const app = express();
 const route = express.Router("../rotas");
-const route_prod = require('../rotas_products')
+const rotas_prod = require('../rotas_products')
+const rotas_user = require("../rotas_user")
 const Person = require('../db_users')
 const Products = require('../db_products')
 const Sales = require("../db_sales")
@@ -43,19 +44,19 @@ route.get('/postgre',sql.getProducts)
 route.post('/postgre',sql.postProducts)
 
 
-route.get ('/products',route_prod.getProducts)
-route.post('/products',route_prod.postProducts)
+route.get ('/products',rotas_prod.getProducts)
+route.post('/products',rotas_prod.postProducts)
+route.put('/products/:id',rotas_prod.putProducts)
+route.delete('/products/:id',rotas_prod.deleteProducts)
 
-//Read 
-route.get('/user', async (req, res) =>{
 
-    try{
-        const people = await Person.find()
-        return res.status(200).json({people})
-    }catch(error){
-        res.status(500).json({error: error})
-    }  
-})
+route.get ('/user',rotas_user.getUser)
+route.post('/user',rotas_user.postUser)
+route.put('/user/:id',rotas_user.CadUser)
+route.delete('/user/:id',rotas_user.deleteUser)
+
+
+
 
 //Read
 route.get('/sales', async (req, res) =>{
@@ -68,25 +69,27 @@ route.get('/sales', async (req, res) =>{
 })
     
 
- //Create
-route.post('/user', async (req, res) =>{
-    const {user_id, nome, email, senha } = req.body
-    const person = {
-        user_id, nome, email, senha
-                    }
-    try{
-        await Person.create(person)
-        res.status(201).json({message: "Pessoa inserida com sucesso"})
-    }catch(error){
-        res.status(500).json({error: error})
-    }  
-})
+route.use('/', express.static(__dirname + '/'))
+route.use('/css', express.static("/css"))
+route.use('/imagens', express.static("/imagens"))
+route.use('/user.js', express.static("/"))
 
+ 
 route.use('/', express.static(__dirname + '/'))
     
 route.get("/index.html",function(req,res){
     res.sendFile(__dirname + "/index.html");
 });
+
+ route.get("/cad_user",function(req,res){
+    res.sendFile(__dirname + "/cad_user.html");
+});
+
+ route.get("/user.js",function(req,res){
+     res.sendFile(__dirname + "/user.js");
+ });
+
+ 
     
 const PORT = process.env.PORT || 4000;
 app.use (route)
