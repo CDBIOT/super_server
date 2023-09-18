@@ -1,15 +1,12 @@
 const express = require('express');
 const routers = express.Router();
-
-//var fs = require('fs');
-
-const Products = require('./db_products');
+const Products = require('./db_products')
 
 
 const getProducts=(async(req, res) =>{
     try{
-        const temps = await Products.find()
-         res.status(200).json({temps})
+        const products = await Products.find()
+         res.status(200).json({products})
      }catch(error){
          res.status(500).json({error: error})
      }  

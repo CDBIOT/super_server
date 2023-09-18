@@ -14,11 +14,11 @@ POST https://super-server-nu.vercel.app/postgre
 content-type: application/json
 
 {
-"id":"05",
-"product": "HASTE FLEXIVEL",
-"marca": "DAUF",
-"price": 6,
-"qtd": 100
+"id":"08",
+"product": "UVA VERMELHA",
+"marca": "SEM SEMENTE",
+"price": 9,
+"qtd": 20
 }
 
 ###
