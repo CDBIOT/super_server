@@ -1,15 +1,21 @@
 const express = require ('express');
 const app = express();
 const route = express.Router("../rotas");
+const route_prod = require('../rotas_products')
 const Person = require('../db_users')
 const Products = require('../db_products')
 const Sales = require("../db_sales")
 const db = require('../db_atlas')
-//const db = require("../db_pg");
 const sql = require('../db_pg')
 const cors = require('cors')
-//import {sql} from '../db_pg'
+const bodyParser = require('body-parser')
 
+app.use(bodyParser.json())
+app.use(
+    bodyParser.urlencoded({
+      extended: true,
+    })
+)
 app.use(cors());
 
 app.use((req,res,next) => {
@@ -33,19 +39,12 @@ route.get('/', (req, res) =>{
 })
 
 //Read from postgre
-route.get('/postgre', async (req, res) =>{
+route.get('/postgre',sql.getProducts)
+route.post('/postgre',sql.postProducts)
 
-    try{
-        //const client = await connect();
-      // 
- const res = await client.query('SELECT NOW()');
-        console.log(res.rows[0]);
-const products = await sql.query('SELECT * FROM Products',(error,results))
-        return res.status(200).json(products)
-    }catch(error){
-        res.status(500).json({error: error})
-    }  
-})
+
+route.get ('/products',route_prod.getProducts)
+route.post('/products',route_prod.postProducts)
 
 //Read 
 route.get('/user', async (req, res) =>{
@@ -69,16 +68,6 @@ route.get('/sales', async (req, res) =>{
 })
     
 
-//Read
-route.get('/products', async (req, res) =>{
-    try{
-       const products = await Products.find()
-        res.status(200).json({products})
-    }catch(error){
-        res.status(500).json({error: error})
-    }  
-})
-
  //Create
 route.post('/user', async (req, res) =>{
     const {user_id, nome, email, senha } = req.body
@@ -93,36 +82,6 @@ route.post('/user', async (req, res) =>{
     }  
 })
 
- //Create product
- route.post('/products', async (req, res) =>{
-    const {product, marca, price, qtd } = req.body
-       // const products = req.params
-    const products = {product, marca, price, qtd}
-    const create_product = new Products(req.body);
-    //temps.save()
-        try{
-            await Products.create(Products)
-            //temps.save()
-            console.log(products)
-            res.status(201).json({message: "Product inserted"})
-            }catch(error){
-            res.status(500).json({error: error})
-        }  
-    })
-    
-    
-route.post('/products',async(req, res) =>{
-    const  produto = {
-    //Utiliza as inf do form html
-      nome: req.body.nome,
-      preco: req.body.preco
-    }
-    res.status(201).send({
-    mensagem: 'Inserted',
-    produtoCriado: produto
-    })
-  });
-  
 route.use('/', express.static(__dirname + '/'))
     
 route.get("/index.html",function(req,res){
