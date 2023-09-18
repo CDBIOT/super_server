@@ -36,37 +36,26 @@ const getProducts=(async(req, res) =>{
     
 
   
-    
-
-
 
 //Update
  const putProducts = (async (req, res) =>{
     const id = req.params.id
-    const {local, temperatura, dia, mes, ano } = req.body
-    const temps = {local, temperatura, dia, mes, ano}
+    const {product, marca, price, qtd } = req.body
+    const prod = {product, marca, price, qtd}
     try{
-     const updateTemp = await Temps.updateOne({id: id},temps);
-     res.status(200).json(temps);
+     const updateProd = await Products.updateOne({id: id},prod);
+   
+     res.status(200).json( " mensagem: 'Correção executada'",temps);
     }catch(error){
     res.status(500).json({error: error})
     }  
 })
 
-routers.post('/temps/:id',async(req, res) =>{
-    const  id = req.params.id
-    
-    res.status(201).send({
-    mensagem: 'inserido',
-    produtoCriado: produto
-    })
-  });
-
  //Delete
-routers.delete('/temps/:id', async (req, res) => {
+const deleteProducts = (async (req, res) => {
     const id= req.params.id
     //temps.remove({id: req.body.id})
-    const temps = await Temps.deleteOne({ _id: id}, (err) => {
+    const temps = await Products.deleteOne({ _id: id}, (err) => {
     
     if(err) return res.status(400).json({
 
@@ -93,4 +82,8 @@ routers.delete('/temps/:id', async (req, res) => {
 //}  
 //});
 
-module.exports={getProducts,postProducts,putProducts}
+module.exports={
+    getProducts,
+    postProducts,
+    putProducts,
+    deleteProducts}

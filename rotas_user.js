@@ -1,6 +1,5 @@
 const { response } = require('express');
 const express = require('express');
-const routers = express.Router();
 const app = express();
 const Person = require('./user')
 var fs = require('fs');
@@ -9,7 +8,7 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
 //Read
-routers.get('/user', async (req, res) =>{
+const getUser = (async (req, res) =>{
     try{
        const people = await Person.find()
         res.status(200).json({people})
@@ -20,7 +19,7 @@ routers.get('/user', async (req, res) =>{
 
 
  //Create
-routers.post('/user', async (req, res) =>{
+const postUser = (async (req, res) =>{
     const {nome, email, senha } = req.body
     const person = { nome,email,senha }
     try{
@@ -32,7 +31,7 @@ routers.post('/user', async (req, res) =>{
 })
 
 //Cadastrar
-routers.post('/cadastrar', async (req, res) =>{
+const CadUser = (async (req, res) =>{
 
     const senha= await bcrypt.hash("123456", 8);
     console.log(senha);
@@ -43,7 +42,7 @@ routers.post('/cadastrar', async (req, res) =>{
 })
 
 //Login
-routers.post('/login', async (req, res) =>{
+const login = (async (req, res) =>{
     try{
        const people = await Person.findOne({
         attributes: ['nome', 'email', 'senha']
@@ -58,7 +57,7 @@ routers.post('/login', async (req, res) =>{
 })
 
 //Update
-routers.patch('/user/:id',async (req, res) =>{
+const putUser = (async (req, res) =>{
     const id = req.params.id
     const {nome,sobrenome,idade} = req.body
     const person = {nome,email,senha,}
@@ -71,7 +70,7 @@ routers.patch('/user/:id',async (req, res) =>{
 })
 
  //Delete
-routers.delete('/user/:id', async (req, res) => {
+const deleteUser = ('/user/:id', async (req, res) => {
     const id= req.params.id
     const person = await Person.findOne({_id: id})
     //const person = await Person.findById(id)
@@ -105,7 +104,7 @@ routers.delete('/user/:id', async (req, res) => {
 
 
 //Login com senha criptografada
-routers.post('/login', async (req, res) =>{
+const loginCrip = (async (req, res) =>{
     const {nome, senha0} = req.body
    // $2a$08$VaEBCrDE50.Sy56I7nuUkeKr0HLt2W2.mQZbvtmMCte6Jq4Iw.6oe
    if(!nome){
@@ -191,7 +190,7 @@ if(!authHeader){
 }
 
 //Cadastrar usuario com senha criptografada 
-routers.post('/cadastrar', async (req, res) =>{
+const postCrip = (async (req, res) =>{
 
     const {nome, email, senha0} = req.body
     
@@ -234,20 +233,12 @@ routers.post('/cadastrar', async (req, res) =>{
 // })
 
 
-
-routers.use('/', express.static(__dirname + '/'))
-routers.use('/css', express.static("/css"))
-routers.use('/imagens', express.static("/imagens"))
-routers.use('/user.js', express.static("/"))
-routers.use('/rotas_user.js', express.static("/"))
-
- 
- routers.get("/cad_user",function(req,res){
-    res.sendFile(__dirname + "/cad_user.html");
-});
-
- routers.get("/user.js",function(req,res){
-     res.sendFile(__dirname + "/user.js");
- });
-
-module.exports = routers
+module.exports = 
+{   getUser,
+    postCrip,
+    CadUser,
+    postUser,
+    deleteUser,
+    login,
+    loginCrip
+}
