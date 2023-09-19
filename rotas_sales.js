@@ -1,8 +1,17 @@
 const express = require('express');
 const rotas = express.Router();
 
+//Read
+const getSales = (async (req, res) =>{
+    try{
+       const sales = await Sales.find()
+        res.status(200).json({sales})
+    }catch(error){
+        res.status(500).json({error: error})
+    }  
+})
 
-rotas.get('/vendas',async(req, res) =>{
+const getVendas = (async(req, res) =>{
     
     try{
         const temps = await Sales.find()
@@ -13,7 +22,7 @@ rotas.get('/vendas',async(req, res) =>{
 
   });
 
- rotas.post('/vendas',async(req, res) =>{
+const postVendas = (async(req, res) =>{
     const  produto = {
        nome: req.body.nome,
        preco: req.body.preco
@@ -24,4 +33,9 @@ rotas.get('/vendas',async(req, res) =>{
     })
   });
     
-module.exports =  rotas
+module.exports =  {
+    getSales,
+    getVendas,
+    postVendas
+
+}

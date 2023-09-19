@@ -1,8 +1,6 @@
-const express = require('express');
-const routers = express.Router();
 const Products = require('./db_products')
 
-
+//Read Products
 const getProducts=(async(req, res) =>{
     try{
         const products = await Products.find()
