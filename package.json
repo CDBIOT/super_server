@@ -1,7 +1,6 @@
 {
   "name": "no-server",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "engines": {
     "node": "18.X"
@@ -28,5 +27,14 @@
     "dotenv": "^16.3.1",
     "nodemon": "^2.0.20",
     "vercel": "^28.10.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CDBIOT/server.git"
+  },
+  "bugs": {
+    "url": "https://github.com/CDBIOT/server/issues"
+  },
+  "homepage": "https://github.com/CDBIOT/server#readme",
+  "description": ""
 }
