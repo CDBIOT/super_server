@@ -12,7 +12,7 @@ const MONGODB_URI = 'mongodb+srv://'+process.env.DB_USER+':'+process.env.DB_PASS
     //useUnifiedTopology: true
   //  },
  //   }
-mongoose.set('strictQuery', false);
+mongoose.set('strictQuery', true);
 mongoose.connect(MONGODB_URI,{
     useNewUrlParser: true,
     useUnifiedTopology: true
