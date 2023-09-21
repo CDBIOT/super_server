@@ -23,15 +23,16 @@ const getVendas = (async(req, res) =>{
   });
 
 const postVendas = (async(req, res) =>{
-    const  produto = {
-       nome: req.body.nome,
-       preco: req.body.preco
+    const  venda = {product,marca,price,qtd,total}=req.body
+    try{
+        await Sales.create(venda)
+        res.status(201).json({message: "Sale inserted"})
+        console.log(product)
+    }catch(error){
+        res.status(500).json({error: error})
     }
-    res.status(201).send({
-    mensagem: 'Venda Cadastrada',
-    produtoCriado: produto
-    })
-  });
+})
+
     
 module.exports =  {
     getSales,
