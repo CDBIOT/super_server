@@ -1,8 +1,6 @@
-const express = require('express');
-const routers = express.Router();
 const Products = require('./db_products')
 
-
+//Read Products
 const getProducts=(async(req, res) =>{
     try{
         const products = await Products.find()
@@ -16,16 +14,15 @@ const getProducts=(async(req, res) =>{
    
  //Create product
  const postProducts=(async (req, res) =>{
-    const {product, marca, price, qtd } = req.body
-       // const products = req.params
-    const products = {product, marca, price, qtd}
-    //const create = new Products(req.body);
+    const product = {product, marca, price, qtd } = req.body
+     // const products = req.params
+    //  const create = new Products(req.body);
     //temps.save()
         try{
-            await Products.create(products)
-            //temps.save()
-            console.log(products)
+            await Products.create(product)
+            Products.save()
             res.status(201).json({message: "Product inserted"})
+            console.log(product)
             }catch(error){
             res.status(500).json({error: error})
         }  

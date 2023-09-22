@@ -10,7 +10,7 @@ content-type: application/json
 GET https://super-server-nu.vercel.app/products
 
 ###
-POST https://super-server-nu.vercel.app/postgre
+POST https://super-server-nu.vercel.app/postgre"6509e24fffadefd30f5d7b7f"
 content-type: application/json
 
 {
@@ -32,7 +32,11 @@ headers
 }
 
 ###
+<<<<<<< HEAD
 DELETE https://super-server-nu.vercel.app/products/id:6509ecdcf08d852ff32dcd0c
+=======
+DELETE https://super-server-nu.vercel.app/products/id:"6509e24fffadefd30f5d7b7f"
+>>>>>>> 9cf657353cba0c386db340f3acc20cf7b4124bba
 
 
 ####
