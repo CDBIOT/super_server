@@ -48,9 +48,10 @@ const deleteProducts = (async (req, res) => {
     const id= req.params.id
     //temps.remove({id: req.body.id})
     try{
-    await Products.deleteOne({id: id}) 
+    await Products.deleteOne({_id: id}) 
         return res.json({
-            message: "Artigo apagado com sucesso!"
+            message: "Artigo apagado com sucesso!",
+            id
             })
     }catch(error){
          return res.status(400).json({
