@@ -10,7 +10,10 @@ content-type: application/json
 GET https://super-server-nu.vercel.app/products
 
 ###
-POST https://super-server-nu.vercel.app/postgre"6509e24fffadefd30f5d7b7f"
+DELETE https://super-server-nu.vercel.app/products/65085cd1976d83e3f5f49136
+
+###
+POST https://super-server-nu.vercel.app/postgre/6509e24fffadefd30f5d7b7f"
 content-type: application/json
 
 {
@@ -31,8 +34,6 @@ headers
 "senha0": "123"
 }
 
-###
-DELETE https://super-server-nu.vercel.app/products/id:650afdcb19625e423a94741f
 
 
 ####

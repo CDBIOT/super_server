@@ -1,5 +1,4 @@
 const express = require('express');
-const rotas = express.Router();
 
 //Read
 const getSales = (async (req, res) =>{

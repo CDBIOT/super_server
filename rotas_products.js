@@ -16,10 +16,11 @@ const getProducts=(async(req, res) =>{
  const postProducts=(async (req, res) =>{
     const product = {product, marca, price, qtd } = req.body
      // const products = req.params
-    //  const create = new Products(req.body);
+      const create_product = new Products(req.body);
     //temps.save()
         try{
             await Products.create(product)
+         
             Products.save()
             res.status(201).json({message: "Product inserted"})
             console.log(product)
