@@ -1,8 +1,5 @@
 const express = require('express');
-<<<<<<< HEAD
-const Sales = require("./db_sales")
-=======
->>>>>>> bdb758510d593e23eb991f05760e7671c73cedcc
+
 
 //Read
 const getSales = (async (req, res) =>{
