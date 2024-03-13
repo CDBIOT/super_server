@@ -10,7 +10,8 @@ content-type: application/json
 GET https://super-server-nu.vercel.app/products
 
 ###
-DELETE https://super-server-nu.vercel.app/products/65085cd1976d83e3f5f49136
+DELETE https://super-server-nu.vercel.app/products/6505b166b7447ff3eb929df0
+
 
 ###
 POST https://super-server-nu.vercel.app/postgre/6509e24fffadefd30f5d7b7f"
