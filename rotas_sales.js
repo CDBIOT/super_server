@@ -1,5 +1,5 @@
 const express = require('express');
-const rotas = express.Router();
+const Sales = require("./db_sales")
 
 //Read
 const getSales = (async (req, res) =>{
@@ -14,7 +14,7 @@ const getSales = (async (req, res) =>{
 const getVendas = (async(req, res) =>{
     
     try{
-        const temps = await Sales.find()
+        const sales = await Sales.find()
          res.status(200).json({sales})
      }catch(error){
          res.status(500).json({error: error})

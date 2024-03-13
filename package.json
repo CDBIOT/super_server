@@ -1,12 +1,12 @@
 {
   "name": "no-server",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "api/index.js",
   "engines": {
     "node": "18.X"
   },
   "scripts": {
-    "start": "node api/index.js",
+    "start": "node .",
     "nodemon": "api/index.js"
   },
   "author": "",
@@ -16,7 +16,7 @@
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
-    "express": "^4.18.2",
+    "express": "^4.18.3",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^6.8.2",
     "pg": "^8.11.3",
@@ -28,13 +28,5 @@
     "nodemon": "^2.0.20",
     "vercel": "^28.10.1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/CDBIOT/server.git"
-  },
-  "bugs": {
-    "url": "https://github.com/CDBIOT/server/issues"
-  },
-  "homepage": "https://github.com/CDBIOT/server#readme",
   "description": ""
 }
