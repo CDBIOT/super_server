@@ -1,6 +1,7 @@
 const express = require('express');
 const Sales = require("./db_sales")
 
+
 //Read
 const getSales = (async (req, res) =>{
     try{
