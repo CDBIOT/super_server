@@ -1,5 +1,4 @@
-// Do not expose your Neon credentials to the browser
-// .env
+
 
 //Read from postgre
 const getProducts = (req, res) =>{

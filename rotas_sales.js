@@ -1,37 +1,37 @@
 const express = require('express');
 const Sales = require("./db_sales")
 
-
 //Read
 const getSales = (async (req, res) =>{
-    try{
-       const sales = await Sales.find()
-        res.status(200).json({sales})
-    }catch(error){
-        res.status(500).json({error: error})
-    }  
+
+pool.query('SELECT * FROM Sales',(error,results)=>{
+if (error){
+   throw error
+}
+res.status(200).json(results.rows)
+})
 })
 
 const getVendas = (async(req, res) =>{
-    
-    try{
-        const sales = await Sales.find()
-         res.status(200).json({sales})
-     }catch(error){
-         res.status(500).json({error: error})
-     }  
+pool.query('SELECT * FROM Vendas',(error,results)=>{
+if (error){
+   throw error
+}
+res.status(200).json(results.rows)
+})
 
-  });
+});
 
 const postVendas = (async(req, res) =>{
     const  venda = {product,marca,price,qtd,total}=req.body
-    try{
-        await Sales.create(venda)
-        res.status(201).json({message: "Sale inserted"})
-        console.log(product)
-    }catch(error){
-        res.status(500).json({error: error})
-    }
+pool.query('INSERT INTO Vendas (id,product, marca, price, qtd) VALUES ($1,$2,$3,$4,$5) RETURNING *',[id,product,marca,price,qtd],(error,results)=>{
+if (error){
+throw error
+}
+res.status(201).send(`Venda inserted ${results.rows[0].id}`)
+
+
+})
 })
 
     
