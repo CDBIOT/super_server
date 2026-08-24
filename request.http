@@ -10,7 +10,7 @@ content-type: application/json
 GET https://super-server-nu.vercel.app/products
 
 ###
-DELETE https://super-server-nu.vercel.app/products/6505b166b7447ff3eb929df0
+DELETE https://super-server-nu.vercel.app/products/651dd7f0c095615e71b297a9
 
 
 ###
