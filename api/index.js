@@ -59,8 +59,7 @@ app.put('/user/:id',rotas_user.CadUser)
 app.delete('/user/:id',rotas_user.deleteUser)
 
 app.get('/sales', rotas_sales.getSales)
-app.get('/vendas',rotas_sales.getVendas)
-app.post('/sales', rotas_sales.postVendas)
+app.post('/sales', rotas_sales.postSales)
    
 
 app.use('/', express.static(__dirname + '/'))
