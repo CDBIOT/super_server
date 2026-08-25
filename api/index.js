@@ -3,8 +3,9 @@ const app = express();
 const rotas_caixa = require('../rotas_caixa')
 const rotas_user = require("../rotas_user")
 const rotas_sales = require("../rotas_sales")
+const rotas_products = require('../rotas_products')
+
 const Person = require('../db_user')
-const Products = require('../db_products')
 const Sales = require("../db_sales")
 const db = require('../db_atlas')
 const sql = require('../db_pg_connect')
@@ -40,12 +41,6 @@ app.get('/', (req, res) =>{
 
         })
 })
-
-//Read from postgre
-app.get('/postgre',Products.getProducts)
-app.post('/postgre',Products.postProducts)
-app.get('/postgre',Products.getProductsId)
-app.get('/postgre',Products.getProductsBarcode)
 
 app.get ('/products',rotas_caixa.getProducts)
 app.post('/products',rotas_caixa.postProducts)
