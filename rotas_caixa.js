@@ -65,7 +65,7 @@ const deleteProducts = (async (req, res) => {
     
 
 module.exports={
-    getProducts,
-    postProducts,
-    putProducts,
+    getCaixa,
+    abrirCaixa,
+    fecharCaixa,
     deleteProducts}
