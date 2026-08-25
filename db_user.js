@@ -11,18 +11,3 @@ const Person = mongoose.model('Person',{
 
 module.exports = Person
 
-
-//Model Products
-
-const Products = mongoose.model('Products',{
-    //_id: Number,
-    product: String  ,
-    marca: String,
-    price: Number,
-    qtd: Number
-})
-
-module.exports = Products
-
-
-
