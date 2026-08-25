@@ -1,66 +1,71 @@
 const Sales = require("./db_sales")
+const Products = require('./db_products');
 
 
 //API HTTP dos vendas
 
+const getProducts = async (req, res) => {
+    try {
+        const products = await Products.getProducts();
+        res.status(200).json(products);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            error: 'Erro ao buscar produtos'
+        });
+    }
+};
 
-const getProductsId = (req, res) =>{
-pool.query('SELECT * FROM Products',(error,results)=>{
-if (error){
-   throw error
-}
-res.status(200).json(results.rows)
-})
-}
-
-const getProductsBarcode = (req, res) =>{
-pool.query('SELECT * FROM Products',(error,results)=>{
-if (error){
-   throw error
-}
-res.status(200).json(results.rows)
-})
-}
 
 //Read
-const getSales = (async (req, res) =>{
+const getSales = async (req, res) =>{
+    try{ 
+         const sales = await Sales.getSales();
+        res.status(200).json(sales);
 
-pool.query('SELECT * FROM Sales',(error,results)=>{
-if (error){
-   throw error
+    }catch (error) {
+        console.error(error);
+        res.status(500).json({
+            error: 'Erro ao buscar produtos'
+            });
 }
-res.status(200).json(results.rows)
-})
-})
-
-const getVendas = (async(req, res) =>{
-pool.query('SELECT * FROM Vendas',(error,results)=>{
-if (error){
-   throw error
 }
-res.status(200).json(results.rows)
-})
 
-});
+
+const getVendas = async (req, res) =>{
+    try{ 
+         const vendas = await Sales.getVendas();
+        res.status(200).json(vendas);
+
+    }catch (error) {
+        console.error(error);
+        res.status(500).json({
+            error: 'Erro ao buscar produtos'
+            });
+}
+}
+
 
 const postVendas = (async(req, res) =>{
-    const  venda = {product,marca,price,qtd,total}=req.body
-pool.query('INSERT INTO Vendas (id,product, marca, price, qtd) VALUES ($1,$2,$3,$4,$5) RETURNING *',[id,product,marca,price,qtd],(error,results)=>{
-if (error){
-throw error
-}
-res.status(201).send(`Venda inserted ${results.rows[0].id}`)
+    try{ 
+    const  venda = req.body;
+    const resultado = await Sales.postVendas(venda)
 
+        res.status(201).json(resultado);
+     }catch(error){
+        console.error(error);
+        res.status(500).json({
+            error: 'Erro ao buscar produtos'
+            });
+        }
 })
-})
+
 
 
     
 module.exports =  {
     getSales,
     getVendas,
-    getProductsId,
-    getProductsBarcode,
     postVendas
 
 }

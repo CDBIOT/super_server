@@ -3,9 +3,6 @@ const Products = require('./db_products')
 //API HTTP dos produtos
 
 
-
-const Products = require('./db_products');
-
 const getProducts = async (req, res) => {
     try {
         const products = await Products.getProducts();
