@@ -1,4 +1,4 @@
-// Do not expose your Neon credentials to the browser
+// Conexão de DATABASE SQL POSTGRE NEON
 // .env
 require('dotenv').config();
 

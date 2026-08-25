@@ -1,7 +1,7 @@
 
 const pool = require('./db_pg_connect');
 
-//Read from postgre
+//SQL de Caixa
 const getProducts = (req, res) =>{
 pool.query('SELECT * FROM Products',(error,results)=>{
 if (error){

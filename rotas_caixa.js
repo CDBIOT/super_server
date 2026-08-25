@@ -1,6 +1,9 @@
 const Products = require('./db_products')
 
-//Read Products
+
+//API HTTP dos Caixas
+
+
 const getProducts=(async(req, res) =>{
     try{
         const products = await Products.find()

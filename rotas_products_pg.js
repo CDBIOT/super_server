@@ -1,37 +1,51 @@
 const Products = require('./db_products')
 
+//API HTTP dos produtos
 
-//Read from postgre
-const getProducts = (req, res) =>{
-pool.query('SELECT * FROM Products',(error,results)=>{
-if (error){
-   throw error
-}
-res.status(200).json(results.rows)
-})
-}
 
-const getProductsId = (req, res) =>{
-pool.query('SELECT * FROM Products',(error,results)=>{
-if (error){
-   throw error
-}
-res.status(200).json(results.rows)
-})
-}
 
-const getProductsBarcode = (req, res) =>{
-pool.query('SELECT * FROM Products',(error,results)=>{
-if (error){
-   throw error
-}
-res.status(200).json(results.rows)
-})
-}
+const Products = require('./db_products');
+
+const getProducts = async (req, res) => {
+    try {
+        const products = await Products.getProducts();
+        res.status(200).json(products);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            error: 'Erro ao buscar produtos'
+        });
+    }
+};
+
+
+const getProductsId = async (req, res) => {
+    try {
+        const products = await Products.getProducts();
+        res.status(200).json(products);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            error: 'Erro ao buscar produtos'
+        });
+    }
+};
+
+const getProductsBarcode = async (req, res) => {
+    try {
+        const products = await Products.getProducts();
+        res.status(200).json(products);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            error: 'Erro ao buscar produtos'
+        });
+    }
+};
 
 const postProducts = (req, res)=>{
-  const {id,product,marca,price,qtd} = req.body
-pool.query('INSERT INTO Products (id,product, marca, price, qtd) VALUES ($1,$2,$3,$4,$5) RETURNING *',[id,product,marca,price,qtd],(error,results)=>{
+  const {barcode,product,marca,price,qtd} = req.body
+pool.query('INSERT INTO Products (barcode,product, marca, price, qtd) VALUES ($1,$2,$3,$4,$5) RETURNING *',[id,product,marca,price,qtd],(error,results)=>{
 if (error){
 throw error
 }
@@ -43,8 +57,8 @@ res.status(201).send(`Product inserted ${results.rows[0].id}`)
 //Update
  const putProducts = (async (req, res) =>{
     const id = req.params.id
-    const {product, marca, price, qtd } = req.body
-    const prod = {product, marca, price, qtd}
+    const {barcode,product, marca, price, qtd } = req.body
+    const prod = {barcode,product, marca, price, qtd}
     try{
      const updateProd = await Products.updateOne({id: id},prod);
    

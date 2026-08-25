@@ -1,6 +1,10 @@
 const express = require('express');
 const Sales = require("./db_sales")
 
+
+//API HTTP dos vendas
+
+
 const getProductsId = (req, res) =>{
 pool.query('SELECT * FROM Products',(error,results)=>{
 if (error){

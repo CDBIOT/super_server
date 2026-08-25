@@ -1,7 +1,8 @@
 
 
+//SQL de Vendas
 
-//Read from postgre
+
 const getProducts = (req, res) =>{
 pool.query('SELECT * FROM Products',(error,results)=>{
 if (error){
