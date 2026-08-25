@@ -7,7 +7,7 @@ const Person = require('../db_user')
 const Products = require('../db_products')
 const Sales = require("../db_sales")
 const db = require('../db_atlas')
-const sql = require('../db_pg')
+const sql = require('../db_pg_connect')
 
 const cors = require('cors')
 const bodyParser = require('body-parser')
@@ -45,7 +45,7 @@ app.get('/', (req, res) =>{
 app.get('/postgre',sql.getProducts)
 app.post('/postgre',sql.postProducts)
 app.get('/postgre',sql.productsid)
-app.get('/postgre',/products/barcode)
+app.get('/postgre',sql.productsbarcode)
 
 app.get ('/products',rotas_prod.getProducts)
 app.post('/products',rotas_prod.postProducts)
