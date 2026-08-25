@@ -1,5 +1,6 @@
-
 const pool = require('./db_pg_connect');
+
+
 //SQL de Produtos
 
 
@@ -9,7 +10,6 @@ const pool = require('./db_pg_connect');
         );  
         return results.rows;
 };
-
 
 
 const getProductsId = async () => {
@@ -71,6 +71,8 @@ const deleteProducts = (async (req, res) => {
 
 module.exports= {
                 getProducts,
+                getProductsId,
+                getProductsBarcode,
                 postProducts
                 }
 

@@ -22,6 +22,7 @@ if (error){
 res.status(200).json(results.rows)
 })
 }
+
 //Read
 const getSales = (async (req, res) =>{
 
@@ -51,16 +52,16 @@ throw error
 }
 res.status(201).send(`Venda inserted ${results.rows[0].id}`)
 
-
 })
 })
-
 
 
     
 module.exports =  {
     getSales,
     getVendas,
+    getProductsId,
+    getProductsBarcode,
     postVendas
 
 }

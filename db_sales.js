@@ -1,4 +1,4 @@
-
+require ('./rotas_sales')
 
 //SQL de Vendas
 
@@ -23,14 +23,14 @@ res.status(201).send(`Product inserted ${results.rows[0].id}`)
 })
 }
 
-getSales('/vendas',async(req, res) =>{
+const getSales('/vendas',async(req, res) =>{
     
     res.status(201).send({
     mensagem: 'Vendas Cadastradas',
     })
   });
 
-postSales('/vendas',async(req, res) =>{
+const postSales('/vendas',async(req, res) =>{
     const  produto = {
        nome: req.body.nome,
        preco: req.body.preco
@@ -41,7 +41,6 @@ postSales('/vendas',async(req, res) =>{
     })
   });
     
-
 
 module.exports= {
     getProducts,
