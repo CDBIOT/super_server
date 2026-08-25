@@ -1,4 +1,3 @@
-const express = require('express');
 const Sales = require("./db_sales")
 
 

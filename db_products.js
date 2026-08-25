@@ -73,7 +73,9 @@ module.exports= {
                 getProducts,
                 getProductsId,
                 getProductsBarcode,
-                postProducts
+                postProducts,
+                putProducts,
+                deleteProducts
                 }
 
 

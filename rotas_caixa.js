@@ -1,5 +1,5 @@
 const Products = require('./db_products')
-
+const caixa = require('./db_caixa')
 
 //API HTTP dos Caixas
 
