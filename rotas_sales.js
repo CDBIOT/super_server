@@ -32,21 +32,7 @@ const getSales = async (req, res) =>{
 }
 
 
-const getVendas = async (req, res) =>{
-    try{ 
-         const vendas = await Sales.getVendas();
-        res.status(200).json(vendas);
-
-    }catch (error) {
-        console.error(error);
-        res.status(500).json({
-            error: 'Erro ao buscar produtos'
-            });
-}
-}
-
-
-const postVendas = (async(req, res) =>{
+const postSales = (async(req, res) =>{
     try{ 
     const  venda = req.body;
     const resultado = await Sales.postVendas(venda)
@@ -60,12 +46,8 @@ const postVendas = (async(req, res) =>{
         }
 })
 
-
-
     
 module.exports =  {
     getSales,
-    getVendas,
-    postVendas
-
+    postSales
 }
