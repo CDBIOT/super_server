@@ -1,6 +1,6 @@
 const express = require ('express');
 const app = express();
-const rotas_prod = require('../rotas_products')
+const rotas_prod = require('../rotas_caixa')
 const rotas_user = require("../rotas_user")
 const rotas_sales = require("../rotas_sales")
 const Person = require('../db_user')
