@@ -1,6 +1,6 @@
 const express = require ('express');
 const app = express();
-const rotas_prod = require('../rotas_caixa')
+const rotas_caixa = require('../rotas_caixa')
 const rotas_user = require("../rotas_user")
 const rotas_sales = require("../rotas_sales")
 const Person = require('../db_user')
@@ -42,15 +42,15 @@ app.get('/', (req, res) =>{
 })
 
 //Read from postgre
-app.get('/postgre',sql.getProducts)
-app.post('/postgre',sql.postProducts)
-//app.get('/postgre',sql.productsid)
-//app.get('/postgre',sql.productsbarcode)
+app.get('/postgre',Products.getProducts)
+app.post('/postgre',Products.postProducts)
+//app.get('/postgre',Products.productsid)
+//app.get('/postgre',Products.productsbarcode)
 
-app.get ('/products',rotas_prod.getProducts)
-app.post('/products',rotas_prod.postProducts)
-app.put('/products/:id',rotas_prod.putProducts)
-app.delete('/products/:id',rotas_prod.deleteProducts)
+app.get ('/products',rotas_caixa.getProducts)
+app.post('/products',rotas_caixa.postProducts)
+app.put('/products/:id',rotas_caixa.putProducts)
+app.delete('/products/:id',rotas_caixa.deleteProducts)
 
 
 app.get ('/user',rotas_user.getUser)

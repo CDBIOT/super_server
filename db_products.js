@@ -29,7 +29,10 @@ res.status(201).send(`Product inserted ${results.rows[0].id}`)
 }
 
 
-module.exports= {getProducts,postProducts}
+module.exports= {
+                getProducts,
+                postProducts
+                }
 
 
 
