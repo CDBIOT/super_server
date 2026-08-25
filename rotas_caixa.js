@@ -4,7 +4,7 @@ const caixa = require('./db_caixa')
 //API HTTP dos Caixas
 
 
-const getProducts=(async(req, res) =>{
+const getCaixa=(async(req, res) =>{
     try{
         const products = await Products.find()
          res.status(200).json({products})
@@ -16,7 +16,7 @@ const getProducts=(async(req, res) =>{
 
    
  //Create product
- const postProducts=(async (req, res) =>{
+ const abrirCaixa=(async (req, res) =>{
     const {product, marca, price, qtd } = req.body
      // const products = req.params
       const create_product = new Products(req.body);
@@ -34,7 +34,7 @@ const getProducts=(async(req, res) =>{
     
 
 //Update
- const putProducts = (async (req, res) =>{
+ const fecharCaixa = (async (req, res) =>{
     const id = req.params.id
     const {product, marca, price, qtd } = req.body
     const prod = {product, marca, price, qtd}

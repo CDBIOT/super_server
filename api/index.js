@@ -42,20 +42,26 @@ app.get('/', (req, res) =>{
         })
 })
 
-app.get ('/products',rotas_caixa.getProducts)
-app.post('/products',rotas_caixa.postProducts)
-app.put('/products/:id',rotas_caixa.putProducts)
-app.delete('/products/:id',rotas_caixa.deleteProducts)
+//Produtos
+app.get ('/products',rotas_products.getProducts)
+app.post('/products',rotas_products.postProducts)
+app.put('/products/:id',rotas_products.putProducts)
+app.delete('/products/:id',rotas_products.deleteProducts)
 
-
+//Usuarios
 app.get ('/user',rotas_user.getUser)
 app.post('/user',rotas_user.postUser)
 app.put('/user/:id',rotas_user.CadUser)
 app.delete('/user/:id',rotas_user.deleteUser)
 
+//Vendas
 app.get('/sales', rotas_sales.getSales)
 app.post('/sales', rotas_sales.postSales)
    
+//Caixa
+app.get('/caixa', rotas_caixa.getCaixa)
+app.post('/caixa/abrir', rotas_caixa.abrirCaixa)
+app.post('/caixa/fechar', rotas_caixa.fecharCaixa)
 
 app.use('/', express.static(__dirname + '/'))
     
