@@ -65,24 +65,6 @@ app.use (route)
 
  //}
  
-module.exports.get('/vendas',async(req, res) =>{
-    
-    res.status(201).send({
-    mensagem: 'Vendas Cadastradas',
-    })
-  });
-
-  module.exports.post('/vendas',async(req, res) =>{
-    const  produto = {
-       nome: req.body.nome,
-       preco: req.body.preco
-    }
-    res.status(201).send({
-    mensagem: 'Venda Cadastrada',
-    produtoCriado: produto
-    })
-  });
-    
 module.exports.get('/products',async(req, res) =>{
     
     res.status(201).send({

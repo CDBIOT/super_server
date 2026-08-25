@@ -9,7 +9,24 @@ if (error){
 }
 res.status(200).json(results.rows)
 })
-  
+}
+
+const getProductsId = (req, res) =>{
+pool.query('SELECT * FROM Products',(error,results)=>{
+if (error){
+   throw error
+}
+res.status(200).json(results.rows)
+})
+}
+
+const getProductsBarcode = (req, res) =>{
+pool.query('SELECT * FROM Products',(error,results)=>{
+if (error){
+   throw error
+}
+res.status(200).json(results.rows)
+})
 }
 
 const postProducts = (req, res)=>{
@@ -56,6 +73,11 @@ const deleteProducts = (async (req, res) => {
 
 module.exports={
     getProducts,
+    getProductsId,
+    getProductsBarcode,
     postProducts,
     putProducts,
-    deleteProducts}
+    deleteProducts
+
+
+}

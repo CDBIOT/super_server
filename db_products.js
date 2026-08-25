@@ -18,6 +18,7 @@ const pool = require('./db_pg_connect');
         });
     }
 };
+
 const postProducts = (req, res)=>{
   const {id,product,marca,price,qtd} = req.body
 pool.query('INSERT INTO Products (id,product, marca, price, qtd) VALUES ($1,$2,$3,$4,$5) RETURNING *',[id,product,marca,price,qtd],(error,results)=>{

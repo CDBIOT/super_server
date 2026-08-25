@@ -1,6 +1,23 @@
 const express = require('express');
 const Sales = require("./db_sales")
 
+const getProductsId = (req, res) =>{
+pool.query('SELECT * FROM Products',(error,results)=>{
+if (error){
+   throw error
+}
+res.status(200).json(results.rows)
+})
+}
+
+const getProductsBarcode = (req, res) =>{
+pool.query('SELECT * FROM Products',(error,results)=>{
+if (error){
+   throw error
+}
+res.status(200).json(results.rows)
+})
+}
 //Read
 const getSales = (async (req, res) =>{
 
@@ -33,6 +50,8 @@ res.status(201).send(`Venda inserted ${results.rows[0].id}`)
 
 })
 })
+
+
 
     
 module.exports =  {

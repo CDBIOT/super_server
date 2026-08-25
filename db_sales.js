@@ -22,8 +22,32 @@ res.status(201).send(`Product inserted ${results.rows[0].id}`)
 })
 }
 
+getSales('/vendas',async(req, res) =>{
+    
+    res.status(201).send({
+    mensagem: 'Vendas Cadastradas',
+    })
+  });
 
-module.exports= {getProducts,postProducts}
+postSales('/vendas',async(req, res) =>{
+    const  produto = {
+       nome: req.body.nome,
+       preco: req.body.preco
+    }
+    res.status(201).send({
+    mensagem: 'Venda Cadastrada',
+    produtoCriado: produto
+    })
+  });
+    
+
+
+module.exports= {
+    getProducts,
+    postProducts,
+    getSales,
+    postSales
+}
 
 
 
