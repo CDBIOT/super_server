@@ -5,10 +5,6 @@ const rotas_user = require("../rotas_user")
 const rotas_sales = require("../rotas_sales")
 const rotas_products = require('../rotas_products')
 
-const Person = require('../db_user')
-const Sales = require("../db_sales")
-const db = require('../db_atlas')
-const sql = require('../db_pg_connect')
 
 const cors = require('cors')
 const bodyParser = require('body-parser')
