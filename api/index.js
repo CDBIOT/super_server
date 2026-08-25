@@ -44,8 +44,8 @@ app.get('/', (req, res) =>{
 //Read from postgre
 app.get('/postgre',sql.getProducts)
 app.post('/postgre',sql.postProducts)
-app.get('/postgre',sql.productsid)
-app.get('/postgre',sql.productsbarcode)
+//app.get('/postgre',sql.productsid)
+//app.get('/postgre',sql.productsbarcode)
 
 app.get ('/products',rotas_prod.getProducts)
 app.post('/products',rotas_prod.postProducts)
