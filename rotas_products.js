@@ -41,14 +41,21 @@ const getProductsBarcode = async (req, res) => {
 };
 
 const postProducts = (req, res)=>{
-  const {barcode,product,marca,price,qtd} = req.body
-pool.query('INSERT INTO Products (barcode,product, marca, price, qtd) VALUES ($1,$2,$3,$4,$5) RETURNING *',[id,product,marca,price,qtd],(error,results)=>{
-if (error){
-throw error
+    try{
+        
+        const {barcode,product,marca,price,qtd} = req.body,[id,product,marca,price,qtd]
+        const resultado = await Products.postProducts();
+        
+        res.status(201).send(`Product inserted ${resultado}`)
+    }
+    catch(error){  
+        res.status(500).json({
+            error: 'Erro ao registrar Produto'
+        })
+    }
 }
-res.status(201).send(`Product inserted ${results.rows[0].id}`)
-})
-}
+
+
 
 
 //Update

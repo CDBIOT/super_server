@@ -25,7 +25,7 @@ const getCaixa=(async(req, res) =>{
             await Products.create(product, marca, price,qtd)
          
             Products.save()
-            res.status(201).json({message: "Product inserted"})
+            res.status(201).json({message: "Caixa aberto!"})
             console.log(product)
             }catch(error){
             res.status(500).json({error: error})
