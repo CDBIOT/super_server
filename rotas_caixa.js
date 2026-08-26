@@ -1,71 +1,60 @@
-const Products = require('./db_products')
-const caixa = require('./db_caixa')
+
+const Caixa = require('./db_caixa')
 
 //API HTTP dos Caixas
 
 
 const getCaixa=(async(req, res) =>{
     try{
-        const products = await Products.find()
-         res.status(200).json({products})
+        const caixa = await Caixa.getCaixa();
+         res.status(200).json({caixa})
      }catch(error){
-         res.status(500).json({error: error})
+        console.error(error);
+         res.status(500).json({error:'Error ao consultar o caixa'})
      }  
    
   });
 
    
- //Create product
+ //Post Abrir caixa
  const abrirCaixa=(async (req, res) =>{
-    const {product, marca, price, qtd } = req.body
-     // const products = req.params
-      const create_product = new Products(req.body);
-    //temps.save()
+    
         try{
-            await Products.create(product, marca, price,qtd)
-         
-            Products.save()
+                const dados = req.body;
+                const caixa = await Caixa.abrirCaixa(dados);
             res.status(201).json({message: "Caixa aberto!"})
-            console.log(product)
+            
             }catch(error){
-            res.status(500).json({error: error})
+            res.status(500).json({error: 'Erro ao abrir caixa'})
         }  
     })
     
 
-//Update
- const fecharCaixa = (async (req, res) =>{
-    const id = req.params.id
-    const {product, marca, price, qtd } = req.body
-    const prod = {product, marca, price, qtd}
-    try{
-     const updateProd = await Products.updateOne({id: id},prod);
-   
-     res.status(200).json( " mensagem: 'Correção executada'",temps);
-    }catch(error){
-    res.status(500).json({error: error})
-    }  
-})
+// POST /caixa/fechar
+const fecharCaixa = async (req, res) => {
 
- //Delete
-const deleteProducts = (async (req, res) => {
-    const id= req.params.id
-    //temps.remove({id: req.body.id})
-    try{
-    await Products.deleteOne({_id: id}) 
-        return res.json({
-            message: "Artigo apagado com sucesso!",
-            id
-            })
-    }catch(error){
-         return res.status(400).json({
-        message: "Error: Artigo não foi apagado com sucesso!"
-    })}
-})
+    try {
+
+        const dados = req.body;
+
+        const caixa = await Caixa.fecharCaixa(dados);
+
+        res.status(200).json(caixa);
+
+    } catch (error) {
+
+        console.error(error);
+
+        res.status(500).json({
+            error: 'Erro ao fechar caixa'
+        });
+
+    }
+};
     
 
 module.exports={
     getCaixa,
     abrirCaixa,
     fecharCaixa,
-    deleteProducts}
+    }
