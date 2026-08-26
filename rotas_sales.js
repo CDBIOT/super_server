@@ -23,7 +23,7 @@ const getSales = async (req, res) =>{
 const postSales = (async(req, res) =>{
     try{ 
     const  venda = req.body;
-    const resultado = await Sales.postVendas(venda)
+    const resultado = await Sales.postSales(venda)
 
         res.status(201).json(resultado);
      }catch(error){
