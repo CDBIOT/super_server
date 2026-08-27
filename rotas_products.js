@@ -90,8 +90,8 @@ module.exports={
     getProductsId,
     getProductsBarcode,
     postProducts,
-    putProducts,
-    deleteProducts
+    // putProducts,
+    // deleteProducts
 
 
 }
