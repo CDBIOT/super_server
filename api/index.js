@@ -40,9 +40,9 @@ app.get('/', (req, res) =>{
 
 //Produtos
 app.get ('/products',rotas_products.getProducts)
-app.post('/products',rotas_products.postProducts)
-app.put('/products/:id',rotas_products.putProducts)
-app.delete('/products/:id',rotas_products.deleteProducts)
+ app.post('/products',rotas_products.postProducts)
+// app.put('/products/:id',rotas_products.putProducts)
+// app.delete('/products/:id',rotas_products.deleteProducts)
 
 //Usuarios
 app.get ('/user',rotas_user.getUser)
