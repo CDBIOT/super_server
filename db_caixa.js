@@ -14,8 +14,6 @@ const getCaixa = async () => {
     return result.rows;
 };
 
-
-// Abrir caixa
 const abrirCaixa = async (dados) => {
 
     const {
@@ -23,6 +21,19 @@ const abrirCaixa = async (dados) => {
         valor_inicial
     } = dados;
 
+    // Verifica se já existe um caixa aberto
+    const caixaAberto = await pool.query(`
+        SELECT *
+        FROM caixa
+        WHERE status = 'ABERTO'
+        LIMIT 1
+    `);
+
+    if (caixaAberto.rows.length > 0) {
+        throw new Error('Já existe um caixa aberto');
+    }
+
+    // Abre um novo caixa
     const result = await pool.query(`
         INSERT INTO caixa
         (
@@ -40,7 +51,6 @@ const abrirCaixa = async (dados) => {
 
     return result.rows[0];
 };
-
 
 module.exports = {
     getCaixa,
