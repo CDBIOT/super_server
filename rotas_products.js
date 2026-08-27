@@ -40,10 +40,10 @@ const getProductsBarcode = async (req, res) => {
     }
 };
 
-const postProducts = (req, res)=>{
+const postProducts = async (req, res)=>{
     try{
         const product = (req.body);
-        const resultado =  Products.postProducts();
+        const resultado =  await Products.postProducts();
         
         res.status(201).send(`Product inserted ${resultado}`)
     }
