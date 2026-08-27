@@ -19,14 +19,15 @@ const getCaixa=(async(req, res) =>{
  //Post Abrir caixa
  const abrirCaixa=(async (req, res) =>{
         try{
-                const dados = req.body;
-                const caixa = await Caixa.abrirCaixa(dados);
+            const dados = req.body;
+            const caixa = await Caixa.abrirCaixa(dados);
             res.status(201).json({message: "Caixa aberto!"})
             
             }catch(error){
+            console.log(dados);
             console.error(error);
             res.status(400).json({error:error.message})
-            console.log( dados);
+            
         }  
     })
 

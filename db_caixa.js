@@ -27,13 +27,13 @@ const abrirCaixa = async (dados) => {
     console.log("usuario_id:", usuario_id);
     console.log("valor_inicial:", valor_inicial);
 
-    if (usuario_id === undefined || usuario_id === null) {
-        throw new Error('Usuário é obrigatório');
-    }
+    // if (usuario_id === undefined || usuario_id === null) {
+    //     throw new Error('Usuário é obrigatório');
+    // }
 
-    if (valor_inicial === undefined || valor_inicial === null) {
-        throw new Error('Valor inicial do caixa é obrigatório');
-    }
+    // if (valor_inicial === undefined || valor_inicial === null) {
+    //     throw new Error('Valor inicial do caixa é obrigatório');
+    // }
 
     // Verifica se já existe um caixa aberto
     const caixaAberto = await pool.query(`
