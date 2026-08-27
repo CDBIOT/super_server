@@ -43,7 +43,7 @@ const getProductsBarcode = async (req, res) => {
 const postProducts = (req, res)=>{
     try{
         const product = (req.body);
-        const resultado = await Products.postProducts();
+        const resultado =  Products.postProducts();
         
         res.status(201).send(`Product inserted ${resultado}`)
     }
