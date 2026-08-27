@@ -1,6 +1,5 @@
 
 const pool = require('./db_pg_connect');
-const pool = require('./db_pg_connect');
 
 
 // Buscar caixas
