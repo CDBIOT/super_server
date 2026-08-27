@@ -28,7 +28,30 @@ const getCaixa=(async(req, res) =>{
             res.status(400).json({error:error.message})
         }  
     })
-    
+
+const getCaixaAberto = async (req, res) => {
+
+    try {
+
+        const caixa = await Caixa.getCaixaAberto();
+
+        if (!caixa) {
+            return res.status(404).json({
+                message: 'Nenhum caixa aberto'
+            });
+        }
+
+        res.status(200).json(caixa);
+
+    } catch (error) {
+
+        console.error(error);
+
+        res.status(500).json({
+            error: 'Erro ao consultar caixa aberto'
+        });
+    }
+};
 
 // POST /caixa/fechar
 const fecharCaixa = async (req, res) => {
@@ -56,5 +79,6 @@ const fecharCaixa = async (req, res) => {
 module.exports={
     getCaixa,
     abrirCaixa,
+    getCaixaAberto,
     fecharCaixa,
     }

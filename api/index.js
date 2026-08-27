@@ -55,6 +55,8 @@ app.get('/sales', rotas_sales.getSales)
 app.post('/sales', rotas_sales.postSales)
    
 //Caixa
+app.get('/caixa/aberto', rotas_caixa.getCaixaAberto);
+
 app.get('/caixa', rotas_caixa.getCaixa)
 app.post('/caixa/abrir', rotas_caixa.abrirCaixa)
 app.post('/caixa/fechar', rotas_caixa.fecharCaixa)

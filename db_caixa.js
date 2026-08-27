@@ -52,7 +52,20 @@ const abrirCaixa = async (dados) => {
     return result.rows[0];
 };
 
+const getCaixaAberto = async () => {
+
+    const result = await pool.query(`
+        SELECT *
+        FROM caixa
+        WHERE status = 'ABERTO'
+        LIMIT 1
+    `);
+
+    return result.rows[0] || null;
+};
+
 module.exports = {
     getCaixa,
+    getCaixaAberto,
     abrirCaixa
 };
