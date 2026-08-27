@@ -29,7 +29,7 @@ const postSales = (async(req, res) =>{
      }catch(error){
         console.error(error);
         res.status(500).json({
-            error: 'Erro ao buscar vendas'
+            error: 'Erro ao gerar vendas'
             });
         }
 })
