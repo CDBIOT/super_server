@@ -21,6 +21,11 @@ const abrirCaixa = async (dados) => {
         valor_inicial
     } = dados;
 
+    console.log("Dados recebidos para abrir caixa:");
+    console.log(dados);
+
+    console.log("usuario_id:", usuario_id);
+    console.log("valor_inicial:", valor_inicial);
 
     if (usuario_id === undefined || usuario_id === null) {
         throw new Error('Usuário é obrigatório');
