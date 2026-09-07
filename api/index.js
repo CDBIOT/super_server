@@ -5,6 +5,9 @@ const rotas_user = require("../rotas_user")
 const rotas_sales = require("../rotas_sales")
 const rotas_products = require('../rotas_products')
 
+const rotas_cardapio = require('../rotas_cardapio')
+const rotas_pedidos = require('../rotas_pedidos')
+
 
 const cors = require('cors')
 const bodyParser = require('body-parser')
@@ -60,6 +63,16 @@ app.get('/caixa/aberto', rotas_caixa.getCaixaAberto);
 app.get('/caixa', rotas_caixa.getCaixa)
 app.post('/caixa/abrir', rotas_caixa.abrirCaixa)
 app.post('/caixa/fechar', rotas_caixa.fecharCaixa)
+
+//Cardápio (lanchonete)
+app.get('/cardapio', rotas_cardapio.getCardapio)
+app.post('/cardapio', rotas_cardapio.postCardapio)
+
+//Pedidos (lanchonete)
+app.get('/pedidos', rotas_pedidos.getPedidos)
+app.get('/pedidos/:id', rotas_pedidos.getPedidoPorId)
+app.post('/pedidos', rotas_pedidos.postPedidos)
+app.patch('/pedidos/:id', rotas_pedidos.patchStatusPedido)
 
 app.use('/', express.static(__dirname + '/'))
     
