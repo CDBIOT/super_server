@@ -3,7 +3,7 @@ const pool = require('./db_pg_connect');
 
 const getCardapio = async () => {
   const results = await pool.query(
-    'SELECT id, categoria, nome, descricao, preco, emoji FROM cardapio_itens WHERE ativo = true ORDER BY categoria, id'
+    'SELECT id, categoria, nome, descricao, preco, emoji FROM cardapio_itens ORDER BY categoria, id'
   );
   return results.rows;
 };
