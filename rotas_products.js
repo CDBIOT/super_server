@@ -28,14 +28,25 @@ const getProductsId = async (req, res) => {
     }
 };
 
+// GET /products/barcode/:barcode  -> um produto (somente leitura)
 const getProductsBarcode = async (req, res) => {
+    const barcode = String(req.params.barcode || '').trim();
+
+    // Códigos de varejo (EAN-8, UPC-A, EAN-13, GTIN-14) são numéricos
+    if (!/^\d{8,14}$/.test(barcode)) {
+        return res.status(400).json({ error: 'Código de barras inválido' });
+    }
+
     try {
-        const products = await Products.getProducts();
-        res.status(200).json(products);
+        const product = await Products.getProductsBarcode(barcode);
+        if (!product) {
+            return res.status(404).json({ error: 'Produto não encontrado', barcode });
+        }
+        res.status(200).json(product);
     } catch (error) {
         console.error(error);
         res.status(500).json({
-            error: 'Erro ao buscar produtos'
+            error: 'Erro ao buscar produto pelo código de barras'
         });
     }
 };

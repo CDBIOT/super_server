@@ -19,11 +19,13 @@ const getProductsId = async () => {
         return results.rows;
 };
 
-const getProductsBarcode = async () => {
+// Busca um produto pelo código de barras (somente leitura, query parametrizada)
+const getProductsBarcode = async (barcode) => {
    const results = await pool.query(
-            'SELECT * FROM products WHERE barcode = $barcode'
-        );  
-        return results.rows;
+            'SELECT id, product, marca, price, qtd, barcode FROM products WHERE barcode = $1 LIMIT 1',
+            [barcode]
+        );
+        return results.rows[0] || null;
 };
 
 
