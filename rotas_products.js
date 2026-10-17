@@ -2,6 +2,15 @@ const Products = require('./db_products')
 
 //API HTTP dos produtos
 
+// Erros de validação (com .status) voltam como estão; o resto vira 500
+const responderErro = (res, error, mensagemPadrao) => {
+    if (error && error.status) {
+        return res.status(error.status).json({ error: error.message });
+    }
+    console.error(error);
+    return res.status(500).json({ error: mensagemPadrao });
+};
+
 
 const getProducts = async (req, res) => {
     try {
@@ -16,15 +25,20 @@ const getProducts = async (req, res) => {
 };
 
 
+// GET /products/:id
 const getProductsId = async (req, res) => {
+    const id = Number(req.params.id);
+    if (!Number.isInteger(id) || id <= 0) {
+        return res.status(400).json({ error: 'Id de produto inválido' });
+    }
     try {
-        const products = await Products.getProducts();
-        res.status(200).json(products);
+        const product = await Products.getProductsId(id);
+        if (!product) {
+            return res.status(404).json({ error: 'Produto não encontrado' });
+        }
+        res.status(200).json(product);
     } catch (error) {
-        console.error(error);
-        res.status(500).json({
-            error: 'Erro ao buscar produtos'
-        });
+        responderErro(res, error, 'Erro ao buscar produto');
     }
 };
 
@@ -51,58 +65,32 @@ const getProductsBarcode = async (req, res) => {
     }
 };
 
+// POST /products  { product, marca, price, qtd, barcode? }
 const postProducts = async (req, res)=>{
     try{
-        const product = (req.body);
-        const resultado =  await Products.postProducts();
-        
-        res.status(201).send(`Product inserted ${resultado}`)
+        const produto = await Products.postProducts(req.body);
+        res.status(201).json(produto);
     }
-    catch(error){  
-        res.status(500).json({
-            error: 'Erro ao registrar Produto'
-        })
+    catch(error){
+        responderErro(res, error, 'Erro ao registrar produto');
     }
 }
 
+// PUT /products/:id  (atualização parcial)
+const putProducts = async (req, res) => {
+    try {
+        const produto = await Products.putProducts(req.params.id, req.body);
+        res.status(200).json(produto);
+    } catch (error) {
+        responderErro(res, error, 'Erro ao atualizar produto');
+    }
+};
 
-
-
-// //Update
-//  const putProducts = (async (req, res) =>{
-
-//     try{
-//     const updateProduct = req.body
-//      res.status(200).json( " mensagem: 'Correção executada'",temps);
-//     }catch(error){
-//     res.status(500).json({error: error})
-//     }  
-// })
-
-//  //Delete
-// const deleteProducts = (async (req, res) => {
-//     const id= req.params.id
-//     //temps.remove({id: req.body.id})
-//     try{
-//     await Products.deleteOne({_id: id}) 
-//         return res.json({
-//             message: "Artigo apagado com sucesso!",
-//             id
-//             })
-//     }catch(error){
-//          return res.status(400).json({
-//         message: "Error: Artigo não foi apagado com sucesso!"
-//     })}
-// })
-    
 
 module.exports={
     getProducts,
     getProductsId,
     getProductsBarcode,
     postProducts,
-    // putProducts,
-    // deleteProducts
-
-
+    putProducts,
 }

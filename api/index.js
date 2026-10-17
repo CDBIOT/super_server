@@ -44,8 +44,9 @@ app.get('/', (req, res) =>{
 //Produtos
 app.get ('/products',rotas_products.getProducts)
 app.get ('/products/barcode/:barcode',rotas_products.getProductsBarcode)
+app.get ('/products/:id',rotas_products.getProductsId)
  app.post('/products',rotas_products.postProducts)
-// app.put('/products/:id',rotas_products.putProducts)
+app.put('/products/:id',rotas_products.putProducts)
 // app.delete('/products/:id',rotas_products.deleteProducts)
 
 //Usuarios
